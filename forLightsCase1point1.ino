@@ -78,7 +78,7 @@ void setup() {
   randomSeed(analogRead(0));
 
 
- priority = 3;
+ priority = 1;
 
  
  
@@ -91,19 +91,19 @@ void loop()
       {
 
 //SELECT PRIORITY 
-
+          redStateD();
 
         
-         switch (priority){
+         /*switch (priority){
 
           case 1:
             Serial.println("Approach A");
             //if (approach==1)
             //{
-              //approachA();
-              greenStateA();
+               approachA();
+              //greenStateA();
       
-             priority= 3;
+             priority= 2;
               break;
            // }
             //else{
@@ -115,6 +115,7 @@ void loop()
             if (approach==1)
             {
               approachB();
+              priority= 3;
               break;
             }
             else{
@@ -131,9 +132,12 @@ void loop()
           digitalWrite(greenA, LOW);
           //ambermillis =millis();//reset  millis
           delay(3000);
+          digitalWrite(redA, LOW);
+          digitalWrite(amberA,LOW);
+          digitalWrite(greenA, LOW);
           
           priority=1;
-          Serial.print("Priority=1");
+          Serial.println("Priority=1");
               break;
             //}
             //else{
@@ -142,7 +146,7 @@ void loop()
             
             
             
-        }
+        }*/
 
 
  /*int approach=1;       
@@ -416,13 +420,25 @@ void loop()
     {
       static unsigned long redmillis = millis(); // run first time only to read current millis due to use of static
       
-      if(millis()-redmillis < (number1*1000)) 
+      if(millis()-redmillis < (3000)) 
         {
           digitalWrite(redD, HIGH);
           digitalWrite(amberD, LOW);
           digitalWrite(greenD, LOW);
-          redmillis =millis();//reset  millis
+          //redmillis =millis();//reset  millis
+          Serial.println("Right");
         }
+        
+        //Serial.println("Completed");
+        else if(millis()-redmillis > (3000))
+        {
+         digitalWrite(redD, LOW);
+         Serial.println("wtf");
+         //delay(1000);
+         }
+          
+         
+        
     }
 
     void amberStateD()
